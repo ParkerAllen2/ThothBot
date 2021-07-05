@@ -1,6 +1,6 @@
 from discord.ext import commands
 
-from services.guild_settings_service import add
+from services.guild_settings_service import add, delete
 from services.join_guild_service import get_join_guild_embed
 
 from check.bot_edit_permission import check_bot_edit_permission, no_permission
@@ -21,6 +21,10 @@ class join_guild_cog(commands.Cog):
       if channel.permissions_for(guild.me).send_messages:
         await channel.send(embed=content)
         break
+  
+  @commands.Cog.listener()
+  async def on_guild_remove(self, guild):
+    delete(guild.id)
 
   @commands.command(
     name = 'display_join_message',
