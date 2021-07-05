@@ -25,4 +25,5 @@ async def on_message(message):
     return await bot.process_commands(message)
   await translate_sent_message(message)
 
+keep_alive.keep_alive()
 bot.run(os.environ['TOKEN'])
