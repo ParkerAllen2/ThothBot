@@ -1,5 +1,6 @@
 from cogs.translation_cog import translate_sent_message
 from guild_manager import reset_all_guild_settings
+import keep_alive
 
 from discord.ext import commands
 
