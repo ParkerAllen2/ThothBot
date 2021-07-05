@@ -3,7 +3,7 @@ from model.guild_settings import guild_settings
 
 def add(guild_id):
   settings = guild_settings(guild_id, "all", 20, False)
-  db[guild_id] = map_to_dictionary()
+  db[guild_id] = map_to_dictionary(settings)
   return settings
 
 def find(guild_id):

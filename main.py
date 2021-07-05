@@ -1,6 +1,9 @@
-import os
+from cogs.translation_cog import translate_sent_message
+from guild_manager import reset_all_guild_settings
 
 from discord.ext import commands
+
+import os
 
 PREFIX = '<3'
 
@@ -11,10 +14,7 @@ async def on_ready():
   print('Logged in as {0.user}'.format(bot))
 
 bot.load_extension("cogs.guild_settings_cog")
-
-@bot.event
-async def on_guild_join(guild):
-  print('Joined guild: ' + guild.id)
+bot.load_extension("cogs.join_guild_cog")
 
 @bot.event
 async def on_message(message):
@@ -22,5 +22,6 @@ async def on_message(message):
     return
   if message.content.startswith(PREFIX):
     return await bot.process_commands(message)
+  await translate_sent_message(message)
 
 bot.run(os.environ['TOKEN'])
